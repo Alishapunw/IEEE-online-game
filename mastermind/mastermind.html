@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html{
+	background: url("dirt.png") repeat;
+}
+
+body{
+	background: transparent;
+}
+
+ h1 { color: #66FF46; }
+
+
+div#memory_board{
+	background:rgb(9,0,53);
+	border:#999 1px solid;
+	width:680px;
+	height:670px;
+	padding:20px;
+	margin:10px auto;
+}
+div#memory_board > div{
+	border:#66FF46 0.5px solid;
+	width:7px;
+	height:7px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:20px;
+	color:white;
+	cursor:pointer;
+	text-align:center;
+}
+</style>
+<script>
+var memory_array = ['$','$','#','#','C','C',':D',':D','@','@','p','p','o','o','!','!','&','&','>','>','<','<','{','{','}','}','+','+','-','-','H','H'
+,'?','?','x','x','y','y','z','z','a','a','p','p','X','X','Y','Y','Z','Z','U','U','=','=','~','~','@','@','F','F','G','G',']',']'
+,'%','%','B','B','N','N','M','M','m','m','n','n','[','[','w','w','W','W','c','c','L','L','I','I','i','i','l','l','T','T','t','t',
+'A','A','B','B'];
+
+
+
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+	var output = '';
+  memory_array.memory_tile_shuffle();
+  
+for(var i = 0; i < memory_array.length; i++){
+document.getElementById('memory_board').innerHTML = memory_array.valueOf();
+}
+
+   tiles_flipped=0;
+	for(var i = 0; i < memory_array.length; i++){
+		output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+	}
+	document.getElementById('memory_board').innerHTML = output;
+}
+function memoryFlipEntire(title,val){
+}
+
+function memoryFlipTile(tile,val){
+	if(tile.innerHTML == "" && memory_values.length < 2){
+		tile.style.background = '#000';
+		tile.innerHTML = val;
+		if(memory_values.length == 0){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+		} else if(memory_values.length == 1){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+			if(memory_values[0] == memory_values[1]){
+				tiles_flipped += 2;
+				myFunction();
+          
+				
+				// Clear both arrays
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();
+				}
+			} else {
+				function flip2Back(){
+				    // Flip the 2 tiles back over
+				    var tile_1 = document.getElementById(memory_tile_ids[0]);
+				    var tile_2 = document.getElementById(memory_tile_ids[1]);
+				    tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+            	    tile_1.innerHTML = "";
+				    tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+            	    tile_2.innerHTML = "";
+				    // Clear both arrays
+				    memory_values = [];
+            	    memory_tile_ids = [];
+				}
+				setTimeout(flip2Back, 700);
+			}
+		}
+	}
+}
+
+
+function myFunction() {
+
+  var myWindow = window.open("Quizzies.html", "Quizzies", "width=500,height=500");
+}
+
+</script>
+</head>
+<body>
+<br>
+<div>
+<h1><center> <b><mark>WELCOME TO MASTERMIND</mark> </b></center></H1>
+</div>
+
+<div id="memory_board"></div>
+
+<script>newBoard();</script>
+
+</body>
+</html>
