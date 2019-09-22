@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="score.js"></script>
 <style>
 html{
 	background: url("dirt.png") repeat;
@@ -24,5 +25,20 @@ body{
 <li> Facebook </li>
 </ol>
 
+<form name="form1" action="mastermind.html" method="get"></form>
+	name:<input type ="text" id="name" name="n">
+	<input type="submit" value="Submit" onclick="check();">
+</form>
+
 </body>
+
+<script>
+function check(){
+	var name = document.getElementById("name").value;
+	var myWindow = window.open("", "_self");
+	myWindow.open("./mastermind.html")
+	
+}
+</script>
+
 </html>

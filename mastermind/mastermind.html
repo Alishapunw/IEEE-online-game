@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="score.js"></script>
 <style>
 html{
-	background: url("./markus-spiske-iar-afB0QQw-unsplash.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
+	background: url("dirt.png") repeat;
 }
 
 body{
@@ -18,14 +17,14 @@ body{
 div#memory_board{
 	background:#CCC;
 	border:#999 1px solid;
-	width:2000px;
-	height:2000px;
+	width:800px;
+	height:1200px;
 	padding:24px;
 	margin:0px auto;
 }
 div#memory_board > div{
 	border:#000 1px solid;
-	width:80px;
+	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
@@ -36,7 +35,7 @@ div#memory_board > div{
 }
 </style>
 <script>
-var memory_array = ['A','A','B','B','C','C','D','D','E','E','+3','+3','+2','+2','+1','+1','I','I','J','J','K','K','L','L','M','M','N','N','O','O','P','P','Q','Q','R','R','S','S','T','T','U','U','V','V','W','W','X','X','Y','Y','Z','Z','%','%'];
+var memory_array = ['+4','+4','+4','+4','C','C','D','D','E','E','+3','+3','+2','+2','H','H','I','I','+1','+1','K','K','L','L','M','M','N','N','O','O','P','P','Q','Q','R','R','S','S','T','T','U','U','V','V','W','W','X','X','Y','Y','Z','Z','%','%'];
 var memory_values = [];
 var memory_tile_ids = [];
 var tiles_flipped = 0;
@@ -53,7 +52,7 @@ function newBoard(){
 	tiles_flipped = 0;
 	var output = '';
     memory_array.memory_tile_shuffle();
-	for(var i = 0; i < memory_array.length+36; i++){
+	for(var i = 0; i < memory_array.length; i++){
 		output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
 	}
 	document.getElementById('memory_board').innerHTML = output;
@@ -121,7 +120,7 @@ function myFunction() {
 <h2><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTIME:</b></h2>
 <script type="text/javascript">
         scoreText.setText('Points: '+score);
-      </script>
+</script>
 </div>
 
 <div id="memory_board"></div>
